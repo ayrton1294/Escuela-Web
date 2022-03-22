@@ -12,6 +12,10 @@ namespace platzi_asp_net_core.Controllers
             escuela.AñoDeCreación=2005;
             escuela.UniqueId = Guid.NewGuid().ToString();
             escuela.Nombre="Platzi School";
+            escuela.Ciudad = "Lima";
+            escuela.Pais = "Perú";
+            escuela.Dirección = "Villa FAP - San Gabino";
+            escuela.TipoEscuela = TiposEscuela.Secundaria;
             
             ViewBag.CosaDinamica = "La Monja";
 

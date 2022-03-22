@@ -1,1 +1,1 @@
-# platzi-asp-net-core
+# platzi_asp_net_core
