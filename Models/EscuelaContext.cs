@@ -33,6 +33,7 @@ namespace platzi_asp_net_core.Models
             escuela.TipoEscuela = TiposEscuela.Secundaria;
 
             modelBuilder.Entity<Escuela>().HasData(escuela);
+            
             modelBuilder.Entity<Asignatura>().HasData(
                 new Asignatura
                 {
@@ -60,6 +61,7 @@ namespace platzi_asp_net_core.Models
                     Id = Guid.NewGuid().ToString()
                 }
                 );
+
             modelBuilder.Entity<Alumno>().HasData(GenerarAlumnosAlAzar().ToArray());
         }
 

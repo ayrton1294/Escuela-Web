@@ -51,11 +51,12 @@ namespace platzi_asp_net_core.Controllers
 
         public IActionResult Index()
         {
-            return View(new Asignatura
-            {
-                Nombre = "Programacion",
-                Id = Guid.NewGuid().ToString()
-            });
+            //return View(new Asignatura
+            //{
+            //    Nombre = "Programacion",
+            //    Id = Guid.NewGuid().ToString()
+            //});
+            return View(_context.Asignaturas.FirstOrDefault());
         }
     }
 }

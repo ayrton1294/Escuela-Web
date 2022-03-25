@@ -16,11 +16,12 @@ namespace platzi_asp_net_core.Controllers
         }
         public IActionResult Index()
         {
-            return View(new Alumno
-            {
-                Nombre = "Pepe Perez",
-                Id = Guid.NewGuid().ToString()
-            });
+            //return View(new Alumno
+            //{
+            //    Nombre = "Pepe Perez",
+            //    Id = Guid.NewGuid().ToString()
+            //});
+            return View(_context.Alumnos.FirstOrDefault());
         }
 
         public IActionResult MultiAlumno()
