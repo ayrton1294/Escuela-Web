@@ -8,8 +8,25 @@ namespace platzi_asp_net_core.Controllers
 {
     public class AsignaturaController : Controller
     {
-
         private EscuelaContext _context;
+
+        [Route("Asignatura/Index")]
+        [Route("Asignatura/Index/{asignaturaId}")]
+        public IActionResult Index(string asignaturaId)
+        {
+            if (!string.IsNullOrEmpty(asignaturaId))
+            {
+                var asignatura = from asig in _context.Asignaturas
+                                 where asig.Id == asignaturaId
+                                 select asig;
+                return View(asignatura.SingleOrDefault());
+            }
+            else
+            {
+                return View("MultiAsignatura", _context.Asignaturas.ToList());
+            }
+
+        }
         public IActionResult MultiAsignatura()
         {
             //var listaAsignaturas = new List<Asignatura>()
@@ -47,16 +64,6 @@ namespace platzi_asp_net_core.Controllers
         public AsignaturaController(EscuelaContext context)
         {
             this._context = context;
-        }
-
-        public IActionResult Index()
-        {
-            //return View(new Asignatura
-            //{
-            //    Nombre = "Programacion",
-            //    Id = Guid.NewGuid().ToString()
-            //});
-            return View(_context.Asignaturas.FirstOrDefault());
         }
     }
 }
