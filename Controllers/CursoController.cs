@@ -6,11 +6,11 @@ using platzi_asp_net_core.Models;
 
 namespace platzi_asp_net_core.Controllers
 {
-    public class AlumnoController : Controller
+    public class CursoController : Controller
     {
         private EscuelaContext _context;
 
-        public AlumnoController(EscuelaContext context)
+        public CursoController(EscuelaContext context)
         {
             _context = context;
         }
@@ -21,27 +21,27 @@ namespace platzi_asp_net_core.Controllers
         {
             if (!string.IsNullOrWhiteSpace(id))
             {
-                var alumno = from alumn in _context.Alumnos
-                                 where alumn.Id == id
-                                 select alumn;
-                return View(alumno.SingleOrDefault());
+                var curso = from cur in _context.Cursos
+                                 where cur.Id == id
+                                 select cur;
+                return View(curso.SingleOrDefault());
             }
             else
             {
-                return View("MultiAlumno", _context.Alumnos.ToList());
+                return View("MultiCurso", _context.Cursos.ToList());
             }
 
         }
 
-        public IActionResult MultiAlumno()
+        public IActionResult MultiCurso()
         {
             //var listaAlumnos = GenerarAlumnosAlAzar();
-            var listaAlumnos = _context.Alumnos.ToList();
+            var listaCursos = _context.Cursos.ToList();
 
             ViewBag.CosaDinamica = "La Monja";
             ViewBag.Fecha = DateTime.Now;
 
-            return View("MultiAlumno", listaAlumnos);
+            return View("MultiCurso", listaCursos);
         }
 
         private List<Alumno> GenerarAlumnosAlAzar()
