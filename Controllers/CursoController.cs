@@ -57,5 +57,32 @@ namespace platzi_asp_net_core.Controllers
 
             return listaAlumnos.OrderBy((al) => al.Id).ToList();
         }
+
+        public IActionResult Create()
+        {
+            ViewBag.Fecha = DateTime.Now;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Curso curso)
+        {
+            ViewBag.Fecha = DateTime.Now;
+            if (ModelState.IsValid)
+            {
+                var escuela = _context.Escuelas.FirstOrDefault();
+                curso.EscuelaId = escuela.Id;
+
+                _context.Cursos.Add(curso);
+                _context.SaveChanges();
+                return View("Index",curso);
+            }
+            else
+            {
+                return View(curso);
+            }
+
+            
+        }
     }
 }
